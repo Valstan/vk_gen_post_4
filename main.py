@@ -1,13 +1,14 @@
 from sys import argv
 
-from utils.classes import ArgvCheck
+from config import bases, fbase
+from utils.classes import ReadWriteFile
+
+if len(argv) < 2:
+    prefix_base = input('Введите имя базы парсера (m, d, t) - ')
+else:
+    prefix_base = argv[1]
 
 
-def start():
-    argument = ArgvCheck()
-    argument.check(argv)
-    argument.get_argument()
-
-
-if __name__ == '__main__':
-    start()
+if prefix_base == 'm' or prefix_base == 'd' or prefix_base == 't':
+    base = ReadWriteFile(bases, prefix_base + fbase, 0)
+    base.read_file()
